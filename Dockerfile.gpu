@@ -1,0 +1,48 @@
+FROM nvidia/cuda:9.0-base-ubuntu16.04
+
+LABEL maintainer="Manraj Singh Grover <manrajsinghgrover@gmail.com>"
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        build-essential \
+        curl \
+        libfreetype6-dev \
+        libpng12-dev \
+        libzmq3-dev \
+        pkg-config \
+        python \
+        python-dev \
+        rsync \
+        software-properties-common \
+        unzip \
+        wget
+
+RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
+    python get-pip.py && \
+    rm get-pip.py
+
+RUN pip --no-cache-dir install \
+        h5py \
+        ipykernel \
+        jupyter \
+        matplotlib \
+        numpy \
+        pandas \
+        scipy \
+        sklearn \
+        keras \
+        gensim \
+        xgboost \
+        hyperopt \
+        nltk \
+        scikit-image \
+        sqlalchemy \
+        pymssql \
+        matplotlib \
+        sympy \
+        nose \
+        seaborn
+
+RUN pip --no-cache-dir install --upgrade python-dateutil==2.6.1
+
+WORKDIR "/root"
+CMD ["/bin/bash"]
