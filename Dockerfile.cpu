@@ -16,5 +16,33 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         unzip \
         wget
 
+RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
+    python get-pip.py && \
+    rm get-pip.py
+
+RUN pip --no-cache-dir install \
+        h5py \
+        ipykernel \
+        jupyter \
+        matplotlib \
+        numpy \
+        pandas \
+        scipy \
+        sklearn \
+        keras \
+        gensim \
+        xgboost \
+        hyperopt \
+        nltk \
+        scikit-image \
+        sqlalchemy \
+        pymssql \
+        matplotlib \
+        sympy \
+        nose \
+        seaborn
+
+RUN pip --no-cache-dir install --upgrade python-dateutil==2.6.1
+
 WORKDIR "/root"
 CMD ["/bin/bash"]
