@@ -1,0 +1,7 @@
+version: '3'
+services:
+  datascience:
+    build:
+      context: .
+      dockerfile: Dockerfile.cpu
+    image: docker-ds:cpu
