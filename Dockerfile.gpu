@@ -13,7 +13,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         cuda-cusolver-9-0 \
         cuda-cusparse-9-0 \
         curl \
-        freedts-dev \
         git-core \
         libcudnn7=7.0.5.15-1+cuda9.0 \
         libfreetype6-dev \
@@ -55,7 +54,6 @@ RUN pip --no-cache-dir install \
         nltk \
         scikit-image \
         SQLAlchemy \
-        pymssql \
         matplotlib \
         sympy \
         nose \
