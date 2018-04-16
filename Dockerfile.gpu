@@ -30,7 +30,7 @@ RUN add-apt-repository ppa:jonathonf/python-3.6 -y && \
     apt-get install -y python3.6 python3.6-dev
 
 # Link Python to Python 3.6
-RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.6
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.6 1
 
 # Install PIP
 RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
