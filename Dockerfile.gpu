@@ -16,6 +16,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         unzip \
         wget
 
+RUN add-apt-repository ppa:ubuntu-toolchain-r/test -y && apt-get update && apt-get install -y gcc-7 g++-7
+
 RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
     python get-pip.py && \
     rm get-pip.py
@@ -31,18 +33,32 @@ RUN pip --no-cache-dir install \
         sklearn \
         keras \
         gensim \
-        xgboost \
         hyperopt \
         nltk \
         scikit-image \
-        sqlalchemy \
+        SQLAlchemy \
         pymssql \
         matplotlib \
         sympy \
         nose \
-        seaborn
+        seaborn \
+        colorlover
 
 RUN pip --no-cache-dir install --upgrade python-dateutil==2.6.1
 
-WORKDIR "/root"
+RUN git clone --recursive https://github.com/dmlc/xgboost && \
+    cd xgboost && \
+    mkdir build && \
+    cd build && \
+    cmake .. -DUSE_CUDA=ON && \
+    make -j && \
+    cd .. && \
+    cd python-package && \
+    python setup.py install
+
+RUN rm -rf /root/.cache/pip/* && \
+    apt-get autoremove -y && apt-get clean && \
+    rm -rf /usr/local/src/*
+
+WORKDIR "/root/projects"
 CMD ["/bin/bash"]
