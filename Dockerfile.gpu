@@ -5,6 +5,7 @@ LABEL maintainer="Manraj Singh Grover <manrajsinghgrover@gmail.com>"
 RUN apt-get update && apt-get install -y --no-install-recommends \
         build-essential \
         curl \
+        git-core \
         libfreetype6-dev \
         libpng12-dev \
         libzmq3-dev \
