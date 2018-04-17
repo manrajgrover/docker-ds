@@ -1,0 +1,92 @@
+FROM nvidia/cuda:9.0-base-ubuntu16.04
+
+LABEL maintainer="Manraj Singh Grover <manrajsinghgrover@gmail.com>"
+
+# Install Cuda requirements, basic CLI tools etc.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        build-essential \
+        cmake \
+        cuda-command-line-tools-9-0 \
+        cuda-cublas-9-0 \
+        cuda-cufft-9-0 \
+        cuda-curand-9-0 \
+        cuda-cusolver-9-0 \
+        cuda-cusparse-9-0 \
+        curl \
+        git-core \
+        libcudnn7=7.0.5.15-1+cuda9.0 \
+        libfreetype6-dev \
+        libpng12-dev \
+        libzmq3-dev \
+        pkg-config \
+        rsync \
+        software-properties-common \
+        unzip \
+        wget
+
+# Install Python 3.6
+RUN add-apt-repository ppa:jonathonf/python-3.6 -y && \
+    apt-get update && \
+    apt-get install -y python3.6 python3.6-dev
+
+# Link Python to Python 3.6
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.6 1
+
+# Install PIP
+RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
+    python get-pip.py && \
+    rm get-pip.py
+
+# Install Python packages
+RUN pip --no-cache-dir install \
+        Pillow \
+        h5py \
+        ipykernel \
+        jupyter \
+        matplotlib \
+        numpy \
+        pandas \
+        scipy \
+        sklearn \
+        keras \
+        gensim \
+        hyperopt \
+        nltk \
+        scikit-image \
+        SQLAlchemy \
+        matplotlib \
+        sympy \
+        nose \
+        seaborn \
+        colorlover
+
+RUN pip --no-cache-dir install --upgrade python-dateutil==2.6.1
+
+# Install XGBoost GPU Version
+RUN git clone --recursive https://github.com/dmlc/xgboost && \
+    cd xgboost && \
+    mkdir build && \
+    cd build && \
+    cmake .. -DUSE_CUDA=ON && \
+    make -j4 && \
+    cd .. && \
+    cd python-package && \
+    python setup.py install
+
+# Install Tensorflow GPU (TODO: Make version configurable)
+RUN pip --no-cache-dir install tensorflow-gpu
+
+# Clean up commands
+RUN rm -rf /root/.cache/pip/* && \
+    apt-get autoremove -y && apt-get clean && \
+    rm -rf /usr/local/src/*
+
+RUN apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Environment Variables
+ENV LD_LIBRARY_PATH /usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
+
+# Set working directory
+WORKDIR "/root/projects"
+CMD ["/bin/bash"]
