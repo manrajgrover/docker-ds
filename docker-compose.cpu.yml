@@ -5,3 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile.cpu
     image: docker-ds:cpu
+    env_file:
+        - .env
+    volumes:
+        - "${project}:/root/project"

@@ -5,3 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile.gpu
     image: docker-ds:gpu
+    env_file:
+        - .env
+    volumes:
+        - "${project}:/root/project"
