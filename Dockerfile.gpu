@@ -68,13 +68,13 @@ RUN git clone --recursive https://github.com/dmlc/xgboost && \
     mkdir build && \
     cd build && \
     cmake .. -DUSE_CUDA=ON && \
-    make -j && \
+    make -j4 && \
     cd .. && \
     cd python-package && \
     python setup.py install
 
 # Install Tensorflow GPU (TODO: Make version configurable)
-RUN pip --no-cache-dir install https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.7.0-cp34-cp34m-linux_x86_64.whl
+RUN pip --no-cache-dir install tensorflow-gpu
 
 # Clean up commands
 RUN rm -rf /root/.cache/pip/* && \
