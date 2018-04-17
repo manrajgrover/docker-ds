@@ -118,5 +118,5 @@ RUN apt-get clean && \
 ENV LD_LIBRARY_PATH /usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
 
 # Set working directory
-WORKDIR "/root/projects"
+WORKDIR "/root/project"
 CMD ["/bin/bash"]
