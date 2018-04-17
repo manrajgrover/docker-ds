@@ -2,6 +2,7 @@ FROM ubuntu:16.04
 
 LABEL maintainer="Manraj Singh Grover <manrajsinghgrover@gmail.com>"
 
+# Install Cuda requirements, basic CLI tools etc.
 RUN apt-get update && apt-get install -y --no-install-recommends \
         build-essential \
         curl \
@@ -17,10 +18,20 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         unzip \
         wget
 
+# Install Python 3.6
+RUN add-apt-repository ppa:jonathonf/python-3.6 -y && \
+    apt-get update && \
+    apt-get install -y python3.6 python3.6-dev
+
+# Link Python to Python 3.6
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.6 1
+
+# Install PIP
 RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
     python get-pip.py && \
     rm get-pip.py
 
+# Install Python packages
 RUN pip --no-cache-dir install \
         h5py \
         ipykernel \
@@ -37,7 +48,6 @@ RUN pip --no-cache-dir install \
         nltk \
         scikit-image \
         SQLAlchemy \
-        pymssql \
         matplotlib \
         sympy \
         nose \
@@ -46,9 +56,14 @@ RUN pip --no-cache-dir install \
 
 RUN pip --no-cache-dir install --upgrade python-dateutil==2.6.1
 
+# Clean up commands
 RUN rm -rf /root/.cache/pip/* && \
     apt-get autoremove -y && apt-get clean && \
     rm -rf /usr/local/src/*
 
-WORKDIR "/root/projects"
+RUN apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Set working directory
+WORKDIR "/root/project"
 CMD ["/bin/bash"]
