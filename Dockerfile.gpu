@@ -117,6 +117,14 @@ RUN apt-get clean && \
 # Environment Variables
 ENV LD_LIBRARY_PATH /usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
 
+# Ports
+
+## Jupyter Notebook
+EXPOSE 8080
+
+## TensorBoard
+EXPOSE 6006
+
 # Set working directory
 WORKDIR "/root/project"
 CMD ["/bin/bash"]
