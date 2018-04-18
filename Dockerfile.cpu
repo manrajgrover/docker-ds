@@ -67,7 +67,7 @@ RUN apt-get clean && \
 # Ports
 
 ## Jupyter Notebook
-EXPOSE 8080
+EXPOSE 8888
 
 ## TensorBoard
 EXPOSE 6006

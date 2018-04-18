@@ -5,6 +5,8 @@ services:
       context: .
       dockerfile: Dockerfile.gpu
     image: docker-ds:gpu
+    ports:
+      - "8991:8888"
     env_file:
         - .env
     volumes:

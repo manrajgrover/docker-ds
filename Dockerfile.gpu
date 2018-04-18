@@ -120,7 +120,7 @@ ENV LD_LIBRARY_PATH /usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
 # Ports
 
 ## Jupyter Notebook
-EXPOSE 8080
+EXPOSE 8888
 
 ## TensorBoard
 EXPOSE 6006

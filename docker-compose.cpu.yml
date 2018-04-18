@@ -5,6 +5,8 @@ services:
       context: .
       dockerfile: Dockerfile.cpu
     image: docker-ds:cpu
+    ports:
+      - "8991:8888"
     env_file:
         - .env
     volumes:
