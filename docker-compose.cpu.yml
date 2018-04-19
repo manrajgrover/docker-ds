@@ -10,4 +10,5 @@ services:
     env_file:
         - .env
     volumes:
+        - "${root}:/root"
         - "${project}:/root/project"
