@@ -39,26 +39,24 @@ RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
 
 # Install Python packages
 RUN pip --no-cache-dir install \
-        Pillow \
+        colorlover \
+        gensim \
+        hyperopt \
         h5py \
         ipykernel \
         jupyter \
+        keras \
         matplotlib \
+        nltk \
+        nose \
         numpy \
         pandas \
-        scipy \
-        sklearn \
-        keras \
-        gensim \
-        hyperopt \
-        nltk \
         scikit-image \
-        SQLAlchemy \
-        matplotlib \
-        sympy \
-        nose \
+        scipy \
         seaborn \
-        colorlover
+        sklearn \
+        SQLAlchemy \
+        sympy
 
 RUN pip --no-cache-dir install --upgrade python-dateutil==2.6.1
 
