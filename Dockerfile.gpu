@@ -118,7 +118,6 @@ RUN apt-get clean && \
 ENV LD_LIBRARY_PATH /usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
 
 # Ports
-
 ## Jupyter Notebook
 EXPOSE 8888
 
