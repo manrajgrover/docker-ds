@@ -1,10 +1,11 @@
-version: '3'
+version: '2.3'
 services:
   datascience:
     build:
       context: .
       dockerfile: Dockerfile.gpu
     image: docker-ds:gpu
+    runtime: nvidia
     ports:
       - "8991:8888"
     env_file:
