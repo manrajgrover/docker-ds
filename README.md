@@ -11,13 +11,13 @@ There are two images available:
 
 ### CPU
 
-#### Build CPU image
+#### To build CPU image
 
 ```sh
 $ docker-compose --file docker-compose.cpu.yml build
 ```
 
-#### Run CPU container
+#### To run container with CPU image
 
 ```sh
 $ docker-compose --file docker-compose.cpu.yml run datascience
@@ -38,6 +38,10 @@ Currently `docker-compose` does not support [runtime in file version `3`](https:
 ```sh
 $ docker-compose --file docker-compose.gpu.yml run datascience
 ```
+
+## Note:
+
+If you're using `docker-compose` from this project, please do not forget to create `.env` file using [`.env.sample`](https://github.com/ManrajGrover/docker-ds/blob/master/.env.sample) file.
 
 ## License
 [MIT](https://github.com/ManrajGrover/docker-ds/blob/master/LICENSE) © Manraj Singh
