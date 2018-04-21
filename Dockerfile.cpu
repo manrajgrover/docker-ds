@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 
 LABEL maintainer="Manraj Singh Grover <manrajsinghgrover@gmail.com>"
 
-# Install Cuda requirements, basic CLI tools etc.
+# Install basic CLI tools etc.
 RUN apt-get update && apt-get install -y --no-install-recommends \
         build-essential \
         curl \
