@@ -52,6 +52,7 @@ RUN pip --no-cache-dir install \
         sklearn \
         SQLAlchemy \
         sympy \
+        tensorflow \
         xgboost
 
 RUN pip --no-cache-dir install --upgrade python-dateutil==2.6.1
