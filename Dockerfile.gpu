@@ -61,7 +61,10 @@ RUN pip --no-cache-dir install \
 RUN pip --no-cache-dir install --upgrade python-dateutil==2.6.1
 
 # Install XGBoost GPU Version
-RUN git clone --recursive https://github.com/dmlc/xgboost && \
+RUN cd /usr/local/src && \
+    mkdir xgboost && \
+    cd xgboost && \
+    git clone --recursive https://github.com/dmlc/xgboost && \
     cd xgboost && \
     mkdir build && \
     cd build && \
@@ -71,7 +74,7 @@ RUN git clone --recursive https://github.com/dmlc/xgboost && \
     cd python-package && \
     python setup.py install
 
-# Install Tensorflow GPU (TODO: Make version configurable)
+# Install Tensorflow GPU
 RUN pip --no-cache-dir install tensorflow-gpu
 
 # Install LightGBM GPU version
@@ -101,8 +104,6 @@ RUN cd /usr/local/src && \
     cd .. && \
     cd python-package && \
     python setup.py install --precompile
-
-ENV PATH /usr/local/src/lightgbm/LightGBM:${PATH}
 
 # Clean up commands
 RUN rm -rf /root/.cache/pip/* && \
