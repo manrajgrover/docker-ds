@@ -1,5 +1,5 @@
 # docker-ds
-[WIP] Personal docker environment for data science
+Personal docker environment for data science
 
 ## Installation
 
