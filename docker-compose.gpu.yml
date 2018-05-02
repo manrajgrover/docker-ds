@@ -8,6 +8,7 @@ services:
     runtime: nvidia
     ports:
       - "8991:8888"
+      - "8992:6006"
     env_file:
         - .env
     volumes:
