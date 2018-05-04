@@ -61,9 +61,9 @@ RUN pip --no-cache-dir install \
 
 RUN pip --no-cache-dir install --upgrade python-dateutil==2.6.1
 
-# Install Python 3 extra packages
+# Install Python 3.6 extra packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        python3-tk
+        python3.6-tk
 
 # Install XGBoost GPU Version
 RUN cd /usr/local/src && \
