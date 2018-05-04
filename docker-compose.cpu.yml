@@ -13,3 +13,4 @@ services:
     volumes:
         - "${root}:/root"
         - "${project}:/root/project"
+    command: jupyter notebook --ip 0.0.0.0 --no-browser --allow-root
