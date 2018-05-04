@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         cuda-cusparse-9-0 \
         curl \
         git-core \
+        iputils-ping \
         libcudnn7=7.0.5.15-1+cuda9.0 \
         libfreetype6-dev \
         libpng12-dev \
@@ -59,6 +60,10 @@ RUN pip --no-cache-dir install \
         sympy
 
 RUN pip --no-cache-dir install --upgrade python-dateutil==2.6.1
+
+# Install Python 3 extra packages
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        python3-tk
 
 # Install XGBoost GPU Version
 RUN cd /usr/local/src && \
