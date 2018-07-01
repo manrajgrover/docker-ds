@@ -110,6 +110,12 @@ RUN cd /usr/local/src && \
     cd python-package && \
     python setup.py install --precompile
 
+# Fix hyperopt issue
+RUN pip install networkx==1.11
+
+# Fix pandas excel issue
+RUN pip install xlrd
+
 # Clean up commands
 RUN rm -rf /root/.cache/pip/* && \
     apt-get autoremove -y && apt-get clean && \

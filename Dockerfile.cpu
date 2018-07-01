@@ -62,6 +62,12 @@ RUN pip --no-cache-dir install --upgrade python-dateutil==2.6.1
 RUN apt-get update && apt-get install -y --no-install-recommends \
         python3.6-tk
 
+# Fix hyperopt issue
+RUN pip install networkx==1.11
+
+# Fix pandas excel issue
+RUN pip install xlrd
+
 # Clean up commands
 RUN rm -rf /root/.cache/pip/* && \
     apt-get autoremove -y && apt-get clean && \
