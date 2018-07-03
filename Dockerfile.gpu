@@ -114,7 +114,11 @@ RUN cd /usr/local/src && \
 RUN pip install networkx==1.11
 
 # Fix pandas excel issue
-RUN pip install xlrd
+RUN pip install xlrd openpyxl
+
+# Fix xgboost plotting issue
+RUN apt-get update && apt-get install -y --no-install-recommends graphviz
+RUN pip install graphviz
 
 # Clean up commands
 RUN rm -rf /root/.cache/pip/* && \
