@@ -72,6 +72,13 @@ RUN pip install xlrd openpyxl
 RUN apt-get update && apt-get install -y --no-install-recommends graphviz
 RUN pip install graphviz
 
+# Fix TensorBoard issue
+RUN pip --no-cache-dir install bleach==1.5.0
+
+# Install fbprophet
+RUN pip --no-cache-dir install pystan
+RUN pip --no-cache-dir install fbprophet
+
 # Clean up commands
 RUN rm -rf /root/.cache/pip/* && \
     apt-get autoremove -y && apt-get clean && \
