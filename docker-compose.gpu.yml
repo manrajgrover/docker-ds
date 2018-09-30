@@ -3,7 +3,7 @@ services:
   datascience:
     build:
       context: .
-      dockerfile: Dockerfile.gpu
+      dockerfile: Dockerfile.gpu.dockerfile
     image: docker-ds:gpu
     runtime: nvidia
     ports:

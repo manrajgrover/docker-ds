@@ -3,7 +3,7 @@ services:
   datascience:
     build:
       context: .
-      dockerfile: Dockerfile.cpu
+      dockerfile: Dockerfile.cpu.dockerfile
     image: docker-ds:cpu
     ports:
       - "8991:8888"
